@@ -10,6 +10,7 @@ class App {
 
     window.addEventListener("resize", this.resize.bind(this), false);
     window.addEventListener("click", this.click.bind(this), false);
+    window.addEventListener("touchstart", this.touchStart.bind(this), false);
 
     this.resize();
     this.setBtn();
@@ -60,6 +61,14 @@ class App {
     const { clientX } = event;
     if (event.target.className !== "material-icons")
       new Tree(this.ctx, clientX, this.stageHeight, this.day);
+  }
+
+  touchStart(event) {
+    const { touches } = event;
+    if (touches.length > 0) {
+      const clientX = touches[0].clientX;
+      new Tree(this.ctx, clientX, this.stageHeight, this.day);
+    }
   }
 }
 
